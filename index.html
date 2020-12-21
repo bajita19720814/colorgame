@@ -4,17 +4,38 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>色のミニゲーム</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
   <link rel="stylesheet" href="css/style.css"> 
 </head>
 <body>
-  <main class="container">
-    <section id="main"><p>文字、文字の書かれている色、背景の色を答えるゲームだよ。<br><span>ごめんねInternet Explorerではうまく動作しません。</span></p></section>
+  <main id="container">
+    <div class="restart">
+      <a href="">
+      <span class="material-icons">
+        replay
+      </span></a>
+      <p class="replay">やり直す</p>
+    </div>
+    
+    <div class="home"><a href="https://bajita19720814.github.io">
+      <span class="material-icons">
+        home
+      </span></a>
+      <p class="text">ホームに戻る</p>
+    </div>
+   
+
+    </div>
+    <section id="main"><p>文字の読み、文字の書かれている色、背景の色を答えるゲームだよ。<br><span>ごめんねInternet Explorerでは動作しません。</span></p></section>
     
     <h1 id="question">クリックしてはじめよう。</h1>
     <section id="choices">
     </section>
-    <section id="result"></section>
-    <section id="next" class="hidden">次へ</section>
+    <section id="result">
+      <p id="coment"></p>
+      <p id="score"></p>
+    </section>
   </main>
   <script src="js/main.js"></script>
 </body>

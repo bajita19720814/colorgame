@@ -1,21 +1,23 @@
 'use strict';
 {
   const colors = [
-    {n:"赤", c:"red"},
-    {n:"青", c:"blue"},
-    {n:"黄", c:"yellow"},
-    {n:"緑", c:"green"},
-    {n:"紫", c:"purple"},
-    {n:"黒", c:"black"},
+    {n:"赤", c:"red", r:"あか"},
+    {n:"青", c:"blue", r:"あお"},
+    {n:"黄", c:"yellow", r:"きいろ"},
+    {n:"緑", c:"green", r:"みどり"},
+    {n:"紫", c:"purple", r:"むらさき"},
+    {n:"黒", c:"black", r:"くろ"},
   ];
-  let gameStarted = false;
+  let isGameStarted = false;
   const main = document.getElementById("main");
   const question = document.getElementById("question");
   const choices = document.getElementById("choices"); 
   const result = document.getElementById("result"); 
-  const next = document.getElementById("next"); 
-  const select = ["文字の色", "文字", "背景の色"];
-  let score = 0;
+  const coment = document.getElementById("coment"); 
+  const score = document.getElementById("score"); 
+  const container = document.getElementById("container"); 
+  const select = ["文字の色", "文字の読み", "背景の色"];
+  let correctCount = 0;
   let quizNum = 1;
   function shaffle(arr) {
     for (let i = arr.length - 1; i >= 0; i--) {
@@ -25,62 +27,52 @@
     return arr;
   }
   class SetQuiz {
-    constructor() {
-     this.colorSet = [...colors];
-     this.correctsel = select[Math.floor(Math.random() * 3)];
-     this.randomColors = shaffle(colors);
-     this.correctColor = this.colorSet.splice(Math.floor(Math.random() * 6), 1)[0];
-     this.otherColor1 = this.colorSet.splice(Math.floor(Math.random() * 5), 1)[0];
-     this.otherColor2 = this.colorSet.splice(Math.floor(Math.random() * 4), 1)[0];
-    
-      if (this.correctsel === select[0]) {
-        question.textContent = `${select[0]}は？`;
-        main.style.color = this.correctColor.c;
-        main.textContent = this.otherColor1.n;
-        main.style.backgroundColor = this.otherColor2.c;
-      } else if (this.correctsel === select[1]) {
-        question.textContent = `${select[1]}は？`;
-        main.style.color = this.otherColor1.c;
-        main.textContent = this.correctColor.n;
-        main.style.backgroundColor = this.otherColor2.c;
-      } else {
-        question.textContent = `${select[2]}は？`;
-        main.style.color = this.otherColor1.c;
-        main.textContent = this.otherColor2.n;
-        main.style.backgroundColor = this.correctColor.c;
-      }
-      this.randomColors.forEach(color => {
-        this.div = document.createElement("div");
-        this.div.textContent = color.n;
-        this.div.addEventListener("click", () => {
-          if ((this.correctsel === select[0] && color === this.correctColor) || (this.correctsel === select[1] && color === this.correctColor) || (this.correctsel === select[2] && color === this.correctColor)) {
-            score++;
-            result.textContent = `正解！　 SCORE:  ${score}/${quizNum}`;
-          } else {
-            result.textContent = `残念！   SCORE:  ${score}/${quizNum}`;
-          }
-          result.classList.add("show");
-          next.classList.remove("hidden");
-        });
-        choices.appendChild(this.div);
-      });
-    }     
-  }
-  
-  next.addEventListener("click", () => {
-    quizNum++;
-    result.classList.remove("show");
-    while (choices.firstChild) {
-      choices.removeChild(choices.firstChild);
+    constructor(colors) {
+      this.colors = shaffle(colors);
+      this.sIndex = Math.floor(Math.random() * 3);
+      this.qIndex = shaffle([0, 1, 2, 3, 4, 5]);
+      this.setQuestion();
+      this.setChoices();
+      this.correctStatus = undefined;
     }
-    new SetQuiz();
-    next.classList.add("hidden");
-  });
-  document.addEventListener("click", () => {
-    if (gameStarted) {
+    setQuestion() {
+      question.textContent = select[this.sIndex];
+      main.textContent = this.colors[this.qIndex[1]].n;
+      main.style.color = this.colors[this.qIndex[0]].c;
+      main.style.backgroundColor = this.colors[this.qIndex[2]].c;
+    }
+    setChoices() {
+      while (choices.firstChild) {
+        choices.removeChild(choices.firstChild);
+      }
+      this.colors.forEach(color => {
+        const div = document.createElement('div');
+        div.textContent = color.r;
+        choices.appendChild(div);
+        div.addEventListener('click', () => {
+          if (color === this.colors[this.qIndex[this.sIndex]]) {
+            correctCount++;
+            coment.textContent = '正解！！';
+          } else {
+            coment.textContent = '残念！不正解';
+          }
+          score.textContent = `SCORE : ${correctCount} / ${quizNum}`;
+          result.classList.add('show');
+          setTimeout(setNextQuiz, 1000);
+        });
+      });
+    }
+  } 
+  container.addEventListener('click', () => {
+    if (isGameStarted) {
       return;
     }
-    new SetQuiz();
-    gameStarted = true;
+    isGameStarted = true;
+    new SetQuiz(colors);
   });
+  function setNextQuiz() {
+    quizNum++;
+    result.classList.remove('show');
+    new SetQuiz(colors);
+  }  
 }
