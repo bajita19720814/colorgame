@@ -50,6 +50,7 @@ body {
   font-size: 20px;
   cursor: pointer;
   user-select: none;
+  background-color: #d0d0d0;
 }
 #next {
   width: 28%;

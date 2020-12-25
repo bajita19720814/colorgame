@@ -45,9 +45,10 @@
       while (choices.firstChild) {
         choices.removeChild(choices.firstChild);
       }
-      this.colors.forEach(color => {
+      this.colors.forEach((color, index) => {
         const div = document.createElement('div');
         div.textContent = color.r;
+        div.style.color = this.colors[index + 1 < 6 ? index + 1 : 0].c;
         choices.appendChild(div);
         div.addEventListener('click', () => {
           if (color === this.colors[this.qIndex[this.sIndex]]) {
