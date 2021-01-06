@@ -5,8 +5,8 @@ body {
   background-color: #f1f1f1;
 }
 #container {
-  width: 320px;
-  margin: 60px auto;
+  width: 315px;
+  margin: 50px auto;
   background-color: #fff;
   padding: 16px;
   position: relative;
@@ -14,7 +14,7 @@ body {
   cursor: pointer;
 }
 #main {
-  width: 320px;
+  width: 315px;
   margin: 0;
   height: 240px;
   border-radius: 4px;
@@ -32,7 +32,7 @@ body {
 }
 #question {
   font-size: 24px;
-  margin: 16px auto 16px 16px;
+  margin: 8px auto 8px 16px;
 }
 #choices {
   display: flex;
@@ -42,7 +42,7 @@ body {
 #choices div {
   width: 28%;
   height: 36px;
-  margin-top: 10px;
+  margin-bottom: 10px;
   border: 1px solid #0f0f0f;
   border-radius: 4px;
   text-align: center;
@@ -52,21 +52,7 @@ body {
   user-select: none;
   background-color: #d0d0d0;
 }
-#next {
-  width: 28%;
-  height: 36px;
-  margin: 32px auto 0;
-  border: 1px solid #0f0f0f;
-  border-radius: 4px;
-  text-align: center;
-  line-height: 36px;
-  font-size: 26px;
-  cursor: pointer;
-  user-select: none;
-}
-#next.hidden {
-  display: none;
-}
+
 #result {
   position: absolute;
   top: 30px;
@@ -77,16 +63,18 @@ body {
   background-color: #fff;
   border-radius: 4px;
   padding: 32px;
-  font-size: 24px;
   transform: translateY(-500px);
   transition: tranform 0.5s;
+}
+#coment {
+  font-size: 24px;
 }
 #result.show {
   transform: none;
 }
 .home {
   position: absolute;
-  top: -48px;
+  top: -42px;
   right: 4px;
   background-color: #e4e4e4;
   width: 32px;
@@ -123,7 +111,7 @@ body {
 }
 .restart {
   position: absolute;
-  top: -48px;
+  top: -42px;
   left: 4px;
   background-color: #e4e4e4;
   width: 32px;
