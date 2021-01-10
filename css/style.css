@@ -16,12 +16,12 @@ body {
 #main {
   width: 315px;
   margin: 0;
-  height: 240px;
+  height: 210px;
   border-radius: 4px;
   
-  font-size: 180px;
+  font-size: 175px;
   text-align: center;
-  line-height: 240px;
+  line-height: 210px;
 }
 #main p {
   font-size: 18px;
@@ -40,14 +40,15 @@ body {
   justify-content: space-between;
 }
 #choices div {
-  width: 28%;
-  height: 36px;
+  width: 32%;
+  height: 75px;
   margin-bottom: 10px;
   border: 1px solid #0f0f0f;
   border-radius: 4px;
   text-align: center;
-  line-height: 36px;
-  font-size: 20px;
+  line-height: 75px;
+  font-size: 24px;
+  font-weight: bold;
   cursor: pointer;
   user-select: none;
   background-color: #d0d0d0;
@@ -67,7 +68,7 @@ body {
   transition: tranform 0.5s;
 }
 #coment {
-  font-size: 24px;
+  font-size: 18px;
 }
 #result.show {
   transform: none;
@@ -129,6 +130,7 @@ body {
 }
 .restart span {
   line-height: 32px;
+  transform: rotateY(180deg);
 }
 .replay {
   position: absolute;
